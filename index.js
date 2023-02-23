@@ -15,9 +15,18 @@ app.use((req, res, next) => {
 		next();
 	}
 });
-app.use("/*", createProxyMiddleware({ target: "https://x11.horizonexpress.online/", changeOrigin: true }));
+app.use(
+	"/*",
+	createProxyMiddleware({
+		target: "https://x11.horizonexpress.online/",
+		changeOrigin: true,
+		pathRewrite: {
+			"^/admin": "/admin/",
+		},
+	})
+);
 
-const PORT = process.env.PORT || 1345;
+const PORT = process.env.PORT || 8007;
 
 app.listen(PORT, () => {
 	console.log("Server started on http://localhost:%s", PORT);

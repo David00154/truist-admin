@@ -3,8 +3,19 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 
 const app = express();
 
-// app.get("/", (req, res) => res.send("WOop"));
-app.use("*", createProxyMiddleware({ target: "https://x11.horizonexpress.online/", changeOrigin: true }));
+app.use((req, res, next) => {
+	// console.log(req.originalUrl);
+	let urlEndsWithSlash = req.url.endsWith("/");
+	let urlEndsWithSlash2 = req.originalUrl.endsWith("/");
+	if (!urlEndsWithSlash || !urlEndsWithSlash2) {
+		req.url = req.url + "/";
+		req.originalUrl = req.originalUrl + "/";
+		next();
+	} else {
+		next();
+	}
+});
+app.use("/*", createProxyMiddleware({ target: "https://x11.horizonexpress.online/", changeOrigin: true }));
 
 const PORT = process.env.PORT || 1345;
 

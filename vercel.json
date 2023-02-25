@@ -9,6 +9,7 @@
 	"routes": [
 		{
 			"src": "/(.*)",
+			"headers": { "cache-control": "s-maxage=86400000" },
 			"dest": "index.js"
 		}
 	]

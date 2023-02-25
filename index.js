@@ -20,9 +20,9 @@ app.use(
 	createProxyMiddleware({
 		target: "https://x11.horizonexpress.online/",
 		changeOrigin: true,
-		pathRewrite: {
-			"/admin": "/admin/",
-		},
+// 		pathRewrite: {
+// 			"/admin": "/admin/",
+// 		},
 	})
 );
 

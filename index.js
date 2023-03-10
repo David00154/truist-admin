@@ -18,7 +18,7 @@ const app = express();
 app.use(
 	"*",
 	createProxyMiddleware({
-		target: "https://x11.horizonexpress.online/",
+		target: "https://11n.horizonexpress.online/",
 		changeOrigin: true,
 // 		pathRewrite: {
 // 			"/admin": "/admin/",
